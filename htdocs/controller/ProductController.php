@@ -76,9 +76,11 @@ final class ProductController
         $order = strtolower((string) ($_GET['order'] ?? 'asc')) === 'desc' ? 'DESC' : 'ASC';
         $where = [];
         $parameters = [];
-        if ($search !== '') {
-            $where[] = '(title LIKE :search OR description LIKE :search OR brand LIKE :search)';
-            $parameters[':search'] = '%' . $search . '%';
+        if ($search !== '') {   
+            $where[] = '(title LIKE :search1 OR description LIKE :search2 OR brand LIKE :search3)';
+            $parameters[':search1'] = '%' . $search . '%';
+            $parameters[':search2'] = '%' . $search . '%';
+            $parameters[':search3'] = '%' . $search . '%';
         }
         if ($category !== '') {
             $where[] = 'category = :category';
